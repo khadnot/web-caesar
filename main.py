@@ -1,6 +1,7 @@
 from flask import Flask
 
-app = flask(__name__)
+app = Flask(__name__)
+
 app.config['DEBUG'] = True
 
 form = """
@@ -18,19 +19,27 @@ form = """
                 border-radius: 10px;
             }
             textarea {
-                margin:10px;
+                margin:10px 0;
                 width: 540px;
                 height: 120px;
             }
         </style>
     </head>
     <body>
-    <!-- create form here....-->
+        <form method="post">
+            <label>Rotate by:
+            <input type="text" name="rot" value="0"/>
+            </label>
+            <textarea type="text" name="text"></textarea>
+            <br>
+            <input type="submit" />
+        </form>
     </body>
 </html>
+"""
 
-@app.route('/')
+@app.route("/")
 def index():
-    return 'Hello World'
+    return form
 
 app.run()
